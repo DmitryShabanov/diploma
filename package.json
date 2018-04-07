@@ -2,12 +2,16 @@
   "name": "diploma",
   "version": "1.0.0",
   "description": "Bachelor`s degree project",
+  "author": "Dmitry",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DmitryShabanov/diploma.git"
+  },
   "scripts": {
     "start": "webpack-dev-server --config webpack/development.js",
     "build": "webpack --config webpack/production.js"
   },
-  "author": "Dmitry",
-  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
