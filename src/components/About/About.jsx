@@ -1,11 +1,11 @@
 import React from 'react';
 
-import style from './Home.scss';
+import style from './About.scss';
 
-const Home = () => (
+const About = () => (
   <div className={style.container}>
     <h1>Welcome!</h1>
   </div>
 );
 
-export default Home;
+export default About;

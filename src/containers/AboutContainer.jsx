@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 
 import * as homeActions from '../actions/home';
 
-import Home from '../components/Home';
+import About from '../components/About';
 
-class HomeContainer extends Component {
+class AboutContainer extends Component {
   state = {
     isShown: false,
   }
@@ -17,22 +17,9 @@ class HomeContainer extends Component {
     const { isShown } = this.state;
     const { isHome, actions } = this.props;
 
-    console.log('isShown', isShown);
-    console.log('isHome', isHome);
-
     return (
       <div>
-        <Home />
-        <button
-          onClick={this.toggle}
-        >
-          isShown
-        </button>
-        <button
-          onClick={actions.toggleHome}
-        >
-          toggleHome
-        </button>
+        <About />
       </div>
     );
   }
@@ -46,4 +33,4 @@ const mapDispathToProps = dispatch => ({
   actions: bindActionCreators(homeActions, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispathToProps)(HomeContainer);
+export default connect(mapStateToProps, mapDispathToProps)(AboutContainer);
