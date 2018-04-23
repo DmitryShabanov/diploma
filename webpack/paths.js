@@ -11,6 +11,4 @@ module.exports = {
   },
   template: path.join(sourceRoot, 'index.html'),
   css: 'styles.css',
-  images: path.join('images', '[name].[ext]'),
-  fonts: path.join('fonts', '[name].[ext]'),
 };

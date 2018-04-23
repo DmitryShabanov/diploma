@@ -23,9 +23,6 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              alias: {
-                '../images': '../public/images',
-              },
               modules: true,
               localIdentName: '[path][name]__[local]--[hash:base64:5]',
             },
@@ -35,10 +32,6 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        loader: 'file-loader',
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
         loader: 'file-loader',
       },
     ],

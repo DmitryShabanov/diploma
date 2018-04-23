@@ -2,34 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as actions from '../actions/home';
+import * as homeActions from '../actions/home';
 
-import Home from '../components/Home';
+import About from '../components/About';
 
 class HomeContainer extends Component {
   state = {
     isShown: false,
   }
 
-  toggle = () => this.setState({isShown: !this.state.isShown});
+  toggle = () => this.setState({ isShown: !this.state.isShown });
 
   render() {
-    console.log('isShown', this.state.isShown);
-    console.log('isHome', this.props.isHome);
+    const { isShown } = this.state;
+    const { isHome, actions } = this.props;
 
     return (
       <div>
-        <Home />
-        <button
-          onClick={this.toggle}
-        >
-          isShown
-        </button>
-        <button
-          onClick={this.props.actions.toggleHome}
-        >
-          toggleHome
-        </button>
+        <About />
       </div>
     );
   }
@@ -40,7 +30,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispathToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch),
+  actions: bindActionCreators(homeActions, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispathToProps)(HomeContainer);

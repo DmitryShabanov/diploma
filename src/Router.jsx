@@ -1,12 +1,16 @@
 import React from 'react';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 
-import HomeContainer from './containers/HomeContainer';
+import Header from './components/Header';
+import About from './components/About';
 
 const Router = () => (
   <HashRouter>
     <div>
-      <Route exact path="/" component={HomeContainer} />
+      <Header />
+      <Switch>
+        <Route exact path="/" component={About} />
+      </Switch>
     </div>
   </HashRouter>
 );
