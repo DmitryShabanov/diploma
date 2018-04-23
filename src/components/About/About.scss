@@ -1,22 +1,23 @@
 @import '../../styles/global';
 
 .container {
-  font-family: 'Open Sans', sans-serif;
+  font-family: $font-family;
 
-  z-index: 0;
+  z-index: -1;
 
   margin-top: 60px;
+
+  background: $light-bg-color;
 }
 
 .title {
   position: relative;
-  z-index: -1;
 
   display: flex;
 
   height: calc(100vh - 60px);
 
-  background-image: url('../../images/apple-keyboard.jpg');
+  background-image: url('../../images/about_bg.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -37,17 +38,41 @@
 
     content: '';
 
-    opacity: 0.4;
+    opacity: 0.3;
     background-color: #000;
   }
 }
 
 .titleText {
-  font-size: 110px;
+  font-size: $biggest-font;
 
   z-index: 0;
 
   letter-spacing: 0.1em;
 
   color: #fff;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+  width: $content-width;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+.contentText {
+  font-size: $large-font;
+  font-weight: $font-weight;
+  line-height: 1.5em;
+
+  margin-top: 40px;
+  padding: 50px 80px;
+
+  text-align: justify;
+
+  color: $main-text-color;
+  border: 1px solid $light-grey-color;
+  background-color: #fff;
 }

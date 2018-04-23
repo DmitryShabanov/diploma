@@ -1,8 +1,8 @@
 @import '../../styles/global';
 
 .header {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
+  font-family: $font-family;
+  font-weight: $font-weight;
 
   position: fixed;
   z-index: 1;
@@ -12,26 +12,29 @@
   width: 100%;
 
   color: #fff;
-  background-color: $darkest-bg-color;
+  background-color: $dark-bg-color;
+  box-shadow: 0 0 15px $dark-bg-color;
+}
+
+.content {
+  display: flex;
+
+  box-sizing: border-box;
+  width: $nav-width;
+  height: 60px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navBar {
   display: flex;
-
-  margin: 0 auto;
-  padding: 0 20px;
-
-  @media (min-width: $normal-screen) {
-    width: 90%;
-  }
-
-  @media (min-width: $large-screen) {
-    max-width: 1260px;
-  }
 }
 
 .navItem {
-  font-size: 18px;
+  font-size: $normal-font;
   line-height: 60px;
 
   height: 60px;
@@ -39,6 +42,7 @@
 
   transition: 0.25s;
   text-decoration: none;
+  letter-spacing: 1px;
 
   color: #fff;
 
@@ -52,7 +56,7 @@
 
   color: $accent-color;
 
-  &::before {
+  &::after {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -66,4 +70,15 @@
 
     background-color: $accent-color;
   }
+}
+
+.git {
+  margin: 0 20px;
+
+  border-radius: 50%;
+}
+
+.gitIcon {
+  width: 25px;
+  height: 25px;
 }

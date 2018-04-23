@@ -1,43 +1,52 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import style from './Header.scss';
 
-const Header = ({ location }) => (
+import gitHubIcon from '../../images/github-logo.svg';
+
+const Header = () => (
   <header className={style.header}>
-    <nav className={style.navBar}>
-      <Link
-        className={`${style.navItem} ${location.pathname === '/' ? style.activeLink : ''}`}
-        to="/"
-      >
-        About
-      </Link>
-      <Link
-        className={`${style.navItem} ${location.pathname === '/binary-tree' ? style.activeLink : ''}`}
-        to="/binary-tree"
-      >
-        Binary tree
-      </Link>
-      <Link
-        className={`${style.navItem} ${location.pathname === '/red-black-tree' ? style.activeLink : ''}`}
-        to="/red-black-tree"
-      >
-        Red-black tree
-      </Link>
-      <Link
-        className={`${style.navItem} ${location.pathname === '/b-tree' ? style.activeLink : ''}`}
-        to="/b-tree"
-      >
-        B tree
-      </Link>
-    </nav>
+    <div className={style.content}>
+      <nav className={style.navBar}>
+        <NavLink
+          to="/"
+          exact
+          className={style.navItem}
+          activeClassName={style.activeLink}
+        >
+          About
+        </NavLink>
+        <NavLink
+          to="/binary-tree"
+          exact
+          className={style.navItem}
+          activeClassName={style.activeLink}
+        >
+          Binary tree
+        </NavLink>
+        <NavLink
+          to="/red-black-tree"
+          exact
+          className={style.navItem}
+          activeClassName={style.activeLink}
+        >
+          Red-black tree
+        </NavLink>
+        <NavLink
+          to="/b-tree"
+          exact
+          className={style.navItem}
+          activeClassName={style.activeLink}
+        >
+          B tree
+        </NavLink>
+      </nav>
+      <a className={style.git} href="https://github.com/DmitryShabanov/diploma">
+        <img className={style.gitIcon} src={gitHubIcon} alt="GitHub" />
+      </a>
+    </div>
   </header>
 );
 
-Header.propTypes = {
-  location: PropTypes.object.isRequired,
-};
-
-export default withRouter(Header);
+export default Header;
