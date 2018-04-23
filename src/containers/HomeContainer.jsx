@@ -6,7 +6,7 @@ import * as homeActions from '../actions/home';
 
 import About from '../components/About';
 
-class AboutContainer extends Component {
+class HomeContainer extends Component {
   state = {
     isShown: false,
   }
@@ -33,4 +33,4 @@ const mapDispathToProps = dispatch => ({
   actions: bindActionCreators(homeActions, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispathToProps)(AboutContainer);
+export default connect(mapStateToProps, mapDispathToProps)(HomeContainer);

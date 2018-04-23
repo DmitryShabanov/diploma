@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import style from './Header.scss';
 
 const Header = ({ location }) => (
-  <section className={style.header}>
+  <header className={style.header}>
     <nav className={style.navBar}>
       <Link
         className={`${style.navItem} ${location.pathname === '/' ? style.activeLink : ''}`}
@@ -33,7 +33,7 @@ const Header = ({ location }) => (
         B tree
       </Link>
     </nav>
-  </section>
+  </header>
 );
 
 Header.propTypes = {
