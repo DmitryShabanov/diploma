@@ -6,7 +6,10 @@ const paths = require('./paths');
 const devServerPort = 3000;
 
 module.exports = {
-  entry: ['babel-polyfill', paths.entry],
+  entry: {
+    polyfill: 'babel-polyfill',
+    index: paths.entry,
+  },
   devtool: 'cheap-module-source-map',
   output: paths.output,
   module: {
