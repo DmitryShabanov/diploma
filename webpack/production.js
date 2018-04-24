@@ -6,17 +6,21 @@ const paths = require('./paths');
 
 module.exports = {
   entry: {
-    main: ['babel-polyfill', paths.entry],
+    polyfill: 'babel-polyfill',
+    index: paths.entry,
+    react: [
+      "react",
+      "react-dom",
+      "prop-types",
+      "react-router-dom",
+    ],
+    redux: [
+      "redux",
+      "react-redux",
+    ],
     vendor: [
-      'prop-types',
-      'react',
-      'react-dom',
-      'react-hot-loader',
-      'react-router-dom',
-      'react-redux',
-      'redux',
-      'redux-thunk',
-      'immutable',
+      "react-helmet",
+      "react-svg",
     ],
   },
   output: paths.output,
@@ -34,7 +38,10 @@ module.exports = {
           use: [
             {
               loader: 'css-loader',
-              options: { alias: { '../img': '../public/img' } },
+              options: {
+                modules: true,
+                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              },
             },
             { loader: 'sass-loader' },
           ],
@@ -43,12 +50,6 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         loader: 'file-loader',
-        options: {},
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        loader: 'file-loader',
-        options: {},
       },
     ],
   },
@@ -62,7 +63,7 @@ module.exports = {
     new ExtractTextPlugin(paths.css),
     new webpack.LoaderOptionsPlugin({ minimize: true }),
     new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
+    new webpack.optimize.CommonsChunkPlugin({ name: ['polyfill', 'react', 'redux', 'vendor'] }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
