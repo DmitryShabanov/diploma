@@ -1,10 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import ReactSVG from 'react-svg';
 
 import style from './About.scss';
 
-import arrowIcon from '../../images/arrow-down.svg';
+import ArrowIcon from '../../images/arrow-down.svg';
 
 const scrollPage = () => {
   const element = document.getElementById('about-content');
@@ -23,15 +22,10 @@ const About = () => (
 
     <div className={style.title}>
       <h1 className={style.titleText}>About us</h1>
-      <div
-        className={style.arrow}
+      <ArrowIcon
+        className={style.arrowIcon}
         onClick={scrollPage}
-      >
-        <ReactSVG
-          path={arrowIcon}
-          className={style.arrowIcon}
-        />
-      </div>
+      />
     </div>
 
     <div id="about-content" className={style.content}>

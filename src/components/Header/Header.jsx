@@ -1,10 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import ReactSVG from 'react-svg';
 
 import style from './Header.scss';
 
-import gitHubIcon from '../../images/github-logo.svg';
+import GitHubLogo from '../../images/github-logo.svg';
 
 const Header = () => (
   <header className={style.header}>
@@ -44,10 +43,7 @@ const Header = () => (
         </NavLink>
       </nav>
       <a className={style.git} href="https://github.com/DmitryShabanov/diploma">
-        <ReactSVG
-          path={gitHubIcon}
-          className={style.gitIcon}
-        />
+        <GitHubLogo className={style.gitIcon} />
       </a>
     </div>
   </header>
