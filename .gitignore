@@ -1,3 +1,15 @@
 .DS_Store
 node_modules
 build
+src
+.babelrc
+.csscomb.json
+.eslintignore
+.eslintrc
+.stylelintignore
+.stylelintrc
+.tern-project
+LICENSE
+README.md
+package-lock.json
+package.json
