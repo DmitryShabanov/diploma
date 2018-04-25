@@ -3,6 +3,8 @@
 ## Description
 Bachelor`s degree project
 
+[Live Version](https://dmitryshabanov.github.io/diploma/)
+
 ## Install
 - Install dependencies for project
 
