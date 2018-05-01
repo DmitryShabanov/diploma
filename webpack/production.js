@@ -14,12 +14,9 @@ module.exports = {
       "prop-types",
       "react-router-dom",
     ],
-    redux: [
-      "redux",
-      "react-redux",
-    ],
     vendor: [
       "react-helmet",
+      "react-graph-vis",
     ],
   },
   output: paths.output,
@@ -74,7 +71,7 @@ module.exports = {
     new ExtractTextPlugin(paths.css),
     new webpack.LoaderOptionsPlugin({ minimize: true }),
     new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({ name: ['polyfill', 'react', 'redux', 'vendor'] }),
+    new webpack.optimize.CommonsChunkPlugin({ name: ['polyfill', 'react', 'vendor'] }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),

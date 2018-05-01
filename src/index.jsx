@@ -2,24 +2,16 @@ import 'react-hot-loader/patch';
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-
-import rootReducer from './reducers';
 
 import './styles/reset.scss';
-
-const store = createStore(rootReducer);
 
 const renderApp = () => {
   const Router = require('./Router.jsx').default;
 
   const component = (
-    <Provider store={store}>
-      <AppContainer>
-        <Router />
-      </AppContainer>
-    </Provider>
+    <AppContainer>
+      <Router />
+    </AppContainer>
   );
 
   render(component, document.getElementById('root'));
