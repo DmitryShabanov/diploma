@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import Graph from '../components/Graph';
 
 import { nodesFavoriteColor } from '../constants/';
-// import bintree from '../libs/bintree';
+import BinTree from '../libs/bintrees/BinTree';
 
 class BinaryTreeContainer extends Component {
   state = {
@@ -31,20 +31,30 @@ class BinaryTreeContainer extends Component {
   }
 
   componentDidMount() {
-    // this.initializeTree();
+    this.initializeTree();
   }
 
-  // initializeTree = () => {
-  //   this.setState({
-  //     tree: bintree(this.state.mementoHistory),
-  //   });
-  // }
+  initializeTree = () => {
+    this.setState({
+      tree: new BinTree(this.state.history),
+    });
+  }
 
-  // nextStep = () => {
-  //   this.setState({ step: this.step + 1 });
-  // }
+  nextStep = () => {
+    const { step, history } = this.state;
 
-  // prevStep = () => {}
+    if (step + 1 < history.length) {
+      this.setState({ step: this.step + 1 });
+    }
+  }
+
+  prevStep = () => {
+    const { step } = this.state;
+
+    if (step - 1 >= 0) {
+      this.setState({ step: this.step - 1 });
+    }
+  }
 
   render() {
     const { history, step } = this.state;
