@@ -33,14 +33,6 @@ const Header = () => (
         >
           Red-black tree
         </NavLink>
-        <NavLink
-          to="/b-tree"
-          exact
-          className={style.navItem}
-          activeClassName={style.activeLink}
-        >
-          B tree
-        </NavLink>
       </nav>
       <a className={style.git} href="https://github.com/DmitryShabanov/diploma">
         <GitHubLogo className={style.gitIcon} />
