@@ -74,13 +74,14 @@ class BinaryTreeContainer extends Component {
 
   addNode = (value) => {
     const { tree, step, history } = this.state;
+    const node = Number(value);
 
-    if (value) {
+    if (node && typeof node === 'number' && !isNaN(node)) {
       if (step < history.length - 1) {
         const newHistory = history.slice(0, step + 1);
         const newTree = new BinarySearchTree(newHistory, step);
 
-        newTree.insert(Number(value));
+        newTree.insert(node);
 
         this.setState({
           history: newHistory,
@@ -89,25 +90,30 @@ class BinaryTreeContainer extends Component {
           nodeValue: '',
         });
       } else {
-        tree.insert(Number(value));
+        tree.insert(node);
 
         this.setState({
           step: step + 1,
           nodeValue: '',
         });
       }
+    } else {
+      this.setState({
+        nodeValue: '',
+      });
     }
   }
 
   removeNode = (value) => {
     const { tree, step, history } = this.state;
+    const node = Number(value);
 
-    if (value) {
+    if (node && typeof node === 'number' && !isNaN(node)) {
       if (step < history.length - 1) {
         const newHistory = history.slice(0, step + 1);
         const newTree = new BinarySearchTree(newHistory, step);
 
-        newTree.remove(Number(value));
+        newTree.remove(node);
 
         this.setState({
           history: newHistory,
@@ -116,13 +122,17 @@ class BinaryTreeContainer extends Component {
           nodeValue: '',
         });
       } else {
-        tree.remove(Number(value));
+        tree.remove(node);
 
         this.setState({
           step: step + 1,
           nodeValue: '',
         });
       }
+    } else {
+      this.setState({
+        nodeValue: '',
+      });
     }
   }
 

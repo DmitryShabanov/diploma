@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Graph from 'react-graph-vis';
 
-import { graphOptions as options } from '../../constants';
+import Controls from '../Controls';
+
+import { graphOptions } from '../../constants';
 
 import style from './Graph.scss';
 
@@ -19,34 +21,21 @@ const MyGaraph = (props) => {
   } = props;
 
   return (
-    <section className={style.container}>
-      <div>
-        <input
-          type="text"
-          value={node}
-          onChange={event => onChangeNode(event.target.value)}
-        />
-        <button onClick={onAdd}>
-          Add
-        </button>
-        <button onClick={onRemove}>
-          Delete
-        </button>
-        <button onClick={onClear}>
-          Clear
-        </button>
-        <button onClick={onPrev}>
-          prev
-        </button>
-        <button onClick={onNext}>
-          next
-        </button>
-      </div>
+    <div className={style.container}>
+      <Controls
+        node={node}
+        onChangeNode={onChangeNode}
+        onNext={onNext}
+        onPrev={onPrev}
+        onAdd={onAdd}
+        onRemove={onRemove}
+        onClear={onClear}
+      />
       <Graph
         graph={graph}
-        options={options}
+        options={graphOptions}
       />
-    </section>
+    </div>
   );
 };
 
