@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet';
 import Graph from '../components/Graph';
 
 import { nodesFavoriteColor } from '../constants/';
-// import BinTree from '../libs/bintrees/BinTree';
 import BinarySearchTree from '../libs/BinaryTree';
 
 class BinaryTreeContainer extends Component {
@@ -36,16 +35,18 @@ class BinaryTreeContainer extends Component {
     this.initializeTree();
   }
 
-  changeNodeValue = (value) => {
+  initializeTree = () => {
+    const { history } = this.state;
+
     this.setState({
-      nodeValue: value,
+      tree: new BinarySearchTree(history),
+      isLoaded: true,
     });
   }
 
-  initializeTree = () => {
+  changeNodeValue = (value) => {
     this.setState({
-      tree: new BinarySearchTree(this.state.history),
-      isLoaded: true,
+      nodeValue: value,
     });
   }
 
@@ -55,18 +56,18 @@ class BinaryTreeContainer extends Component {
     if (step + 1 < history.length) {
       this.setState({
         step: step + 1,
-        tree: new BinarySearchTree(this.state.history, this.step + 1),
+        tree: new BinarySearchTree(history, step + 1),
       });
     }
   }
 
   prevStep = () => {
-    const { step } = this.state;
+    const { step, history } = this.state;
 
     if (step - 1 >= 0) {
       this.setState({
         step: step - 1,
-        tree: new BinarySearchTree(this.state.history, this.step - 1),
+        tree: new BinarySearchTree(history, step - 1),
       });
     }
   }
@@ -74,52 +75,80 @@ class BinaryTreeContainer extends Component {
   addNode = (value) => {
     const { tree, step, history } = this.state;
 
-    if (step < history.length - 1) {
-      this.setState({
-        history: history.slice(step),
-      });
+    if (value) {
+      if (step < history.length - 1) {
+        const newHistory = history.slice(0, step + 1);
+        const newTree = new BinarySearchTree(newHistory, step);
+
+        newTree.insert(Number(value));
+
+        this.setState({
+          history: newHistory,
+          tree: newTree,
+          step: step + 1,
+          nodeValue: '',
+        });
+      } else {
+        tree.insert(Number(value));
+
+        this.setState({
+          step: step + 1,
+          nodeValue: '',
+        });
+      }
     }
-
-    this.setState({
-      nodeValue: '',
-    });
-
-    tree.insert(Number(value));
-    this.nextStep();
   }
 
   removeNode = (value) => {
     const { tree, step, history } = this.state;
 
-    if (step < history.length - 1) {
-      this.setState({
-        history: history.slice(step),
-      });
+    if (value) {
+      if (step < history.length - 1) {
+        const newHistory = history.slice(0, step + 1);
+        const newTree = new BinarySearchTree(newHistory, step);
+
+        newTree.remove(Number(value));
+
+        this.setState({
+          history: newHistory,
+          tree: newTree,
+          step: step + 1,
+          nodeValue: '',
+        });
+      } else {
+        tree.remove(Number(value));
+
+        this.setState({
+          step: step + 1,
+          nodeValue: '',
+        });
+      }
     }
-
-    this.setState({
-      nodeValue: '',
-    });
-
-    tree.remove(Number(value));
-    this.nextStep();
   }
 
   removeAll = () => {
     const { tree, step, history } = this.state;
 
     if (step < history.length - 1) {
+      const newHistory = history.slice(0, step + 1);
+      const newTree = new BinarySearchTree(newHistory, step);
+
+      newTree.removeAll();
+
       this.setState({
-        history: history.slice(step),
+        history: newHistory,
+        tree: newTree,
+        step: step + 1,
+        nodeValue: '',
+      });
+    } else {
+      tree.removeAll();
+
+      this.setState({
+        step: step + 1,
+        nodeValue: '',
       });
     }
-
-    this.setState({
-      nodeValue: '',
-    });
-
-    tree.removeAll();
-    this.nextStep();
   }
 
   render() {
