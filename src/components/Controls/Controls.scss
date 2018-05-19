@@ -1,0 +1,67 @@
+@import '../../styles/global';
+
+.container {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 20px;
+
+  display: flex;
+
+  height: 30px;
+}
+
+.input {
+  font-size: $small-font;
+  font-style: italic;
+
+  box-sizing: border-box;
+  width: 120px;
+  height: 30px;
+  padding: 10px;
+
+  transition: 0.25s;
+
+  color: #696969;
+  border: 1px solid $accent-color;
+  border-radius: 5px;
+  outline: none;
+
+  &:focus {
+    border-color: darken($accent-color, 25%);
+    box-shadow: 0 0 0 0.2rem rgba(104, 199, 233, 0.35);
+  }
+
+  &::placeholder {
+    color: #a3a3a3;
+  }
+}
+
+.button {
+  font-size: $small-font;
+
+  box-sizing: border-box;
+  height: 30px;
+  margin-left: 5px;
+  padding: 0 10px;
+
+  transition: color 0.25s, background 0.25s, box-shadow 0.1s;
+  letter-spacing: 0.05em;
+
+  color: darken($accent-color, 25%);
+  border: 1px solid $accent-color;
+  border-radius: 5px;
+  outline: none;
+  background-color: #fff;
+
+  &:hover {
+    cursor: pointer;
+
+    color: #fff;
+    background-color: darken($accent-color, 25%);
+  }
+
+  &:active {
+    box-shadow: 0 0 0 0.2rem rgba(104, 199, 233, 0.35);
+  }
+}
