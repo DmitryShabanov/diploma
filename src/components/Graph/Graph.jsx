@@ -34,6 +34,11 @@ const MyGaraph = (props) => {
       <Graph
         graph={graph}
         options={graphOptions}
+        events={{
+          select: (selected) => {
+            onChangeNode(String(selected.nodes[0] ? selected.nodes[0] : ''));
+          },
+        }}
       />
     </div>
   );

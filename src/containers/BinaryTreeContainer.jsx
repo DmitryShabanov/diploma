@@ -75,8 +75,22 @@ class BinaryTreeContainer extends Component {
   addNode = (value) => {
     const { tree, step, history } = this.state;
     const node = Number(value);
+    let isIncludes = false;
 
     if (node && typeof node === 'number' && !isNaN(node)) {
+      history[step].nodes.forEach((item) => {
+        if (item.id === node) {
+          isIncludes = true;
+        }
+      });
+
+      if (isIncludes) {
+        this.setState({
+          nodeValue: '',
+        });
+        return null;
+      }
+
       if (step < history.length - 1) {
         const newHistory = history.slice(0, step + 1);
         const newTree = new BinarySearchTree(newHistory, step);
@@ -102,13 +116,29 @@ class BinaryTreeContainer extends Component {
         nodeValue: '',
       });
     }
+
+    return null;
   }
 
   removeNode = (value) => {
     const { tree, step, history } = this.state;
     const node = Number(value);
+    let isIncludes = false;
 
     if (node && typeof node === 'number' && !isNaN(node)) {
+      history[step].nodes.forEach((item) => {
+        if (item.id === node) {
+          isIncludes = true;
+        }
+      });
+
+      if (!isIncludes) {
+        this.setState({
+          nodeValue: '',
+        });
+        return null;
+      }
+
       if (step < history.length - 1) {
         const newHistory = history.slice(0, step + 1);
         const newTree = new BinarySearchTree(newHistory, step);
@@ -134,6 +164,8 @@ class BinaryTreeContainer extends Component {
         nodeValue: '',
       });
     }
+
+    return null;
   }
 
   removeAll = () => {
