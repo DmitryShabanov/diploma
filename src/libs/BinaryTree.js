@@ -11,6 +11,7 @@ class BinarySearchTree {
   constructor(history, step) {
     this.root = null;
     this.history = history;
+    this.algoritmLegend = [];
 
     if (!step) {
       const { nodes } = history[history.length - 1];
@@ -33,6 +34,7 @@ class BinarySearchTree {
     const snapshot = {
       nodes: [],
       edges: [],
+      legend: this.algoritmLegend,
     };
 
     this.preorder(snapshot, null, this.root);
@@ -42,6 +44,8 @@ class BinarySearchTree {
     } else {
       this.history[step] = snapshot;
     }
+
+    this.algoritmLegend = [];
   }
 
   initialInsert(data) {
@@ -59,12 +63,12 @@ class BinarySearchTree {
       if (node.left === null) {
         node.left = newNode;
       } else {
-        this.insertNode(node.left, newNode);
+        this.initialInsertNode(node.left, newNode);
       }
     } else if (node.right === null) {
       node.right = newNode;
     } else {
-      this.insertNode(node.right, newNode);
+      this.initialInsertNode(node.right, newNode);
     }
   }
 
@@ -74,6 +78,11 @@ class BinarySearchTree {
     if (this.root === null) {
       this.root = newNode;
     } else {
+      this.algoritmLegend.push({
+        node: newNode.data,
+        color: 'inserted',
+        description: '',
+      });
       this.insertNode(this.root, newNode);
     }
 
@@ -81,15 +90,45 @@ class BinarySearchTree {
   }
 
   insertNode(node, newNode) {
+    const legend = {
+      node: null,
+      color: '',
+      description: '',
+    };
+
     if (newNode.data < node.data) {
+      legend.node = node.data;
+      legend.color = 'selected';
+      legend.description = `New node ${newNode.data} < node ${node.data}`;
+
       if (node.left === null) {
         node.left = newNode;
+
+        legend.description = legend.description + `, and left leaf is empty => node ${node.data} left leaf = node ${newNode.data}`;
+
+        this.algoritmLegend.push(legend);
       } else {
+        legend.description = legend.description + `, and left leaf is not empty => go to the left leaf`;
+
+        this.algoritmLegend.push(legend);
+
         this.insertNode(node.left, newNode);
       }
     } else if (node.right === null) {
       node.right = newNode;
+
+      legend.node = node.data;
+      legend.color = 'selected';
+      legend.description = `New node ${newNode.data} > node ${node.data}, and right leaf is empty => node ${node.data} right leaf = node ${newNode.data}`;
+
+      this.algoritmLegend.push(legend);
     } else {
+      legend.node = node.data;
+      legend.color = 'selected';
+      legend.description = `New node ${newNode.data} > node ${node.data}, and right leaf is not empty => go to the right leaf`;
+
+      this.algoritmLegend.push(legend);
+
       this.insertNode(node.right, newNode);
     }
   }
