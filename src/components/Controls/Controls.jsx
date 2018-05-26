@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactTooltip from 'react-tooltip';
 
 import style from './Controls.scss';
 
@@ -26,33 +27,43 @@ const Controls = (props) => {
       <button
         className={style.button}
         onClick={onAdd}
+        data-tip="Add node"
       >
         Add
       </button>
       <button
         className={style.button}
         onClick={onRemove}
+        data-tip="Delete node"
       >
         Delete
       </button>
       <button
         className={style.button}
         onClick={onClear}
+        data-tip="Delete all"
       >
         Clear
       </button>
       <button
         className={style.button}
         onClick={onPrev}
+        data-tip="Previous state"
       >
         Prev
       </button>
       <button
         className={style.button}
         onClick={onNext}
+        data-tip="Next state"
       >
         Next
       </button>
+      <ReactTooltip
+        className={style.tooltip}
+        effect="solid"
+        place="bottom"
+      />
     </div>
   );
 };

@@ -1,6 +1,8 @@
 @import '../../styles/global';
 
 .container {
+  font-family: $font-family;
+
   position: absolute;
   z-index: 1;
   top: 10px;
@@ -64,4 +66,9 @@
   &:active {
     box-shadow: 0 0 0 0.2rem rgba(104, 199, 233, 0.35);
   }
+}
+
+.tooltip {
+  font-family: $font-family;
+  font-size: $smallest-font;
 }
