@@ -13,10 +13,11 @@ class BinarySearchTree {
   constructor(history, step) {
     this.root = null;
     this.history = history;
-    this.algoritmLegend = [];
 
     if (!step) {
       const { nodes } = history[history.length - 1];
+
+      this.algoritmLegend = history[history.length - 1].legend ? [ ...history[history.length - 1].legend ] : [];
 
       this.history.pop();
       nodes.forEach(node => this.initialInsert(node.id));
@@ -24,6 +25,8 @@ class BinarySearchTree {
       this.treeToHistory();
     } else {
       const { nodes } = history[step];
+
+      this.algoritmLegend = history[step].legend ? [ ...history[step].legend ] : [];
 
       nodes.forEach(node => this.initialInsert(node.id));
 
@@ -36,8 +39,12 @@ class BinarySearchTree {
     const snapshot = {
       nodes: [],
       edges: [],
-      legend: this.algoritmLegend,
+      legend: [
+        ...this.algoritmLegend,
+      ],
     };
+
+    this.algoritmLegend = [];
 
     this.preorder(snapshot, null, this.root);
 
@@ -46,8 +53,6 @@ class BinarySearchTree {
     } else {
       this.history[step] = snapshot;
     }
-
-    this.algoritmLegend = [];
   }
 
   initialInsert(data) {
@@ -213,6 +218,7 @@ class BinarySearchTree {
     if (node !== null) {
       this.postorder(node.left);
       this.postorder(node.right);
+      console.log(node.data);
     }
   }
 
