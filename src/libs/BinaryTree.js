@@ -110,7 +110,7 @@ class BinarySearchTree {
 
         this.algoritmLegend.push(legend);
       } else {
-        legend.description = legend.description + `, and left leaf is not empty => go to the left leaf`;
+        legend.description = legend.description + `, and left leaf is not empty => go to the left subtree`;
 
         this.algoritmLegend.push(legend);
 
@@ -125,7 +125,7 @@ class BinarySearchTree {
       this.algoritmLegend.push(legend);
     } else {
       legend.node = node.data;
-      legend.description = `New node ${newNode.data} > node ${node.data}, and right leaf is not empty => go to the right leaf`;
+      legend.description = `New node ${newNode.data} > node ${node.data}, and right leaf is not empty => go to the right subtree`;
 
       this.algoritmLegend.push(legend);
 
@@ -134,44 +134,80 @@ class BinarySearchTree {
   }
 
   remove(data) {
+    const legend = {
+      node: data,
+      description: `Deleting the node ${data}`,
+    };
+    this.algoritmLegend.push(legend);
+
     this.root = this.removeNode(this.root, data);
     this.treeToHistory();
   }
 
   removeNode(node, key) {
+    const legend = {
+      node: null,
+      description: '',
+    };
+
     if (node === null) {
+      legend.description = 'Tree is empty!';
+      this.algoritmLegend.push(legend);
+
       return null;
     }
 
     if (key < node.data) {
+      legend.node = node.data;
+      legend.description = `Value ${key} < node ${node.data} => go to the left subtree`;
+      this.algoritmLegend.push(legend);
       node.left = this.removeNode(node.left, key);
+
       return node;
     }
 
     if (key > node.data) {
+      legend.node = node.data;
+      legend.description = `Value ${key} > node ${node.data} => go to the right subtree`;
+      this.algoritmLegend.push(legend);
       node.right = this.removeNode(node.right, key);
+
       return node;
     }
 
+    legend.node = node.data;
+
     if (node.left === null && node.right === null){
+      legend.description = `Value ${key} = node ${node.data} and node have not children => node ${node.data} = null. Node removed!`;
+      this.algoritmLegend.push(legend);
       node = null;
       return node;
     }
 
     if (node.left === null) {
+      legend.description = `Value ${key} = node ${node.data} and node have right children => node ${node.data} = right subtree. Node removed!`;
+      this.algoritmLegend.push(legend);
       node = node.right;
+
       return node;
     }
 
     if (node.right === null) {
+      legend.description = `Value ${key} = node ${node.data} and node have left children => node ${node.data} = left subtree. Node removed!`;
+      this.algoritmLegend.push(legend);
       node = node.left;
+
       return node;
     }
 
     const aux = this.findMinNode(node.right);
-    node.data = aux.data;
 
+    legend.description = `Value ${key} = node ${node.data} and node have two children => node ${node.data} = min node from right subtree(node ${aux.data}). Then delete node ${aux.data} from right subtree`;
+    this.algoritmLegend.push(legend);
+
+    node.data = aux.data;
     node.right = this.removeNode(node.right, aux.data);
+
     return node;
   }
 
