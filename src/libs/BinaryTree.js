@@ -106,7 +106,7 @@ class BinarySearchTree {
       if (node.left === null) {
         node.left = newNode;
 
-        legend.description = legend.description + `, and left leaf is empty => node ${node.data} left leaf = node ${newNode.data}`;
+        legend.description = legend.description + `, and left leaf is empty => node ${node.data} left leaf = node ${newNode.data}. Node inserted!`;
 
         this.algoritmLegend.push(legend);
       } else {
@@ -120,7 +120,7 @@ class BinarySearchTree {
       node.right = newNode;
 
       legend.node = node.data;
-      legend.description = `New node ${newNode.data} > node ${node.data}, and right leaf is empty => node ${node.data} right leaf = node ${newNode.data}`;
+      legend.description = `New node ${newNode.data} > node ${node.data}, and right leaf is empty => node ${node.data} right leaf = node ${newNode.data}. Node inserted!`;
 
       this.algoritmLegend.push(legend);
     } else {
@@ -135,11 +135,6 @@ class BinarySearchTree {
 
   remove(data) {
     this.root = this.removeNode(this.root, data);
-    this.treeToHistory();
-  }
-
-  removeAll() {
-    this.root = null;
     this.treeToHistory();
   }
 
@@ -216,17 +211,39 @@ class BinarySearchTree {
   }
 
   search(node, data) {
+    const legend = {
+      node: null,
+      description: `Searching the node ${data}`,
+    };
+
     if (node === null) {
+      legend.description = `There is no node in the tree!`
+      this.algoritmLegend.push(legend);
+      this.treeToHistory();
+
       return null;
     }
 
     if (data < node.data) {
+      legend.node = node.data;
+      legend.description = `Searched node ${data} < node ${node.data} => continue search in the left subtree`;
+      this.algoritmLegend.push(legend);
+
       return this.search(node.left, data);
     }
 
     if (data > node.data) {
+      legend.node = node.data;
+      legend.description = `Searched node ${data} > node ${node.data} => continue search in the right subtree`;
+      this.algoritmLegend.push(legend);
+
       return this.search(node.right, data);
     }
+
+    legend.node = node.data;
+    legend.description = `Searched node ${data} = node ${node.data} => node is found!`;
+    this.algoritmLegend.push(legend);
+    this.treeToHistory();
 
     return node;
   }

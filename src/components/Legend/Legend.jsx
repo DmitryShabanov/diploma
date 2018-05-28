@@ -8,14 +8,18 @@ const Legend = ({ legend }) => (
     <p className={style.title}>
       Legend
     </p>
-    {legend.map(item => (
-      <p
-        className={style.legendItem}
-        key={item.description}
-      >
-        {item.description}
-      </p>
-    ))}
+    {legend.length > 0 ? (
+        legend.map(item => (
+          <p
+            className={style.legendItem}
+            key={item.description}
+          >
+            {item.description}
+          </p>
+        ))
+      )
+      : null
+    }
   </div>
 );
 
@@ -25,8 +29,8 @@ Legend.defaultProps = {
 
 Legend.propTypes = {
   legend: PropTypes.arrayOf(PropTypes.shape({
-    node: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
+    node: PropTypes.number,
+    description: PropTypes.string,
   })),
 };
 

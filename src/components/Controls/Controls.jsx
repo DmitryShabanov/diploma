@@ -12,7 +12,7 @@ const Controls = (props) => {
     onPrev,
     onAdd,
     onRemove,
-    onClear,
+    onSearch,
   } = props;
 
   return (
@@ -45,10 +45,10 @@ const Controls = (props) => {
       </button>
       <button
         className={style.button}
-        onClick={onClear}
-        data-tip="Delete all"
+        onClick={onSearch}
+        data-tip="Search node"
       >
-        Clear
+        Search
       </button>
       <button
         className={style.button}
@@ -80,7 +80,7 @@ Controls.propTypes = {
   onPrev: PropTypes.func.isRequired,
   onAdd: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
-  onClear: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default Controls;

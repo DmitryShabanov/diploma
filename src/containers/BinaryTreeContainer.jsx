@@ -25,10 +25,10 @@ class BinaryTreeContainer extends Component {
           { id: 13, label: 'Node 13' },
           { id: 5, label: 'Node 5' },
           { id: 9, label: 'Node 9' },
-          { id: 27, label: 'Node 27' },
+          { id: 28, label: 'Node 28' },
         ],
         edges: [],
-        legend: [{ node: -1 }, { description: 'Tree is initialized.' }],
+        legend: [{ node: -1, description: 'Tree is initialized.' }],
       },
     ],
   }
@@ -174,14 +174,22 @@ class BinaryTreeContainer extends Component {
     return null;
   }
 
-  removeAll = () => {
+  searchNode = (value) => {
     const { tree, step, history } = this.state;
+    const node = Number(value);
+
+    if (!node || typeof node !== 'number' || isNaN(node)) {
+      this.setState({
+        nodeValue: '',
+      });
+      return null;
+    }
 
     if (step < history.length - 1) {
       const newHistory = history.slice(0, step + 1);
       const newTree = new BinarySearchTree(newHistory, step);
 
-      newTree.removeAll();
+      newTree.search(newTree.root, node);
 
       this.setState({
         history: newHistory,
@@ -190,13 +198,15 @@ class BinaryTreeContainer extends Component {
         nodeValue: '',
       });
     } else {
-      tree.removeAll();
+      tree.search(tree.root, node);
 
       this.setState({
         step: step + 1,
         nodeValue: '',
       });
     }
+
+    return null;
   }
 
   render() {
@@ -206,7 +216,7 @@ class BinaryTreeContainer extends Component {
       prevStep,
       addNode,
       removeNode,
-      removeAll,
+      searchNode,
     } = this;
 
     const {
@@ -236,7 +246,7 @@ class BinaryTreeContainer extends Component {
             onPrev={prevStep}
             onAdd={() => addNode(nodeValue)}
             onRemove={() => removeNode(nodeValue)}
-            onClear={removeAll}
+            onSearch={() => searchNode(nodeValue)}
           />
         </div>
       </section>
