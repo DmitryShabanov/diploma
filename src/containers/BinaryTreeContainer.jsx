@@ -189,7 +189,7 @@ class BinaryTreeContainer extends Component {
       const newHistory = history.slice(0, step + 1);
       const newTree = new BinarySearchTree(newHistory, step);
 
-      newTree.search(newTree.root, node);
+      newTree.find(node);
 
       this.setState({
         history: newHistory,
@@ -198,7 +198,7 @@ class BinaryTreeContainer extends Component {
         nodeValue: '',
       });
     } else {
-      tree.search(tree.root, node);
+      tree.find(node);
 
       this.setState({
         step: step + 1,

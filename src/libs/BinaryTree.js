@@ -210,6 +210,15 @@ class BinarySearchTree {
     }
   }
 
+  find(node) {
+    const legend = {
+      node: node,
+      description: `Searching the node ${node}`,
+    };
+    this.algoritmLegend.push(legend);
+    this.search(this.root, node);
+  }
+
   search(node, data) {
     const legend = {
       node: null,
