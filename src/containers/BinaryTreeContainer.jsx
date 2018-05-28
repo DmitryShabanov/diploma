@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 
-import Graph from '../components/Graph';
-
-import { nodesFavoriteColor } from '../constants/';
 import BinarySearchTree from '../libs/BinaryTree';
+
+import Graph from '../components/Graph';
+import Legend from '../components/Legend';
+
+import style from './BinaryTreeContainer.scss';
 
 class BinaryTreeContainer extends Component {
   state = {
     isLoaded: false,
     nodeValue: '',
-
     step: 0,
     history: [
       {
         nodes: [
-          { id: 15, label: 'Node 15', color: nodesFavoriteColor },
-          { id: 25, label: 'Node 25', color: nodesFavoriteColor },
+          { id: 15, label: 'Node 15' },
+          { id: 25, label: 'Node 25' },
           { id: 10, label: 'Node 10' },
-          { id: 7, label: 'Node 7', color: nodesFavoriteColor },
+          { id: 7, label: 'Node 7' },
           { id: 22, label: 'Node 22' },
           { id: 17, label: 'Node 17' },
           { id: 13, label: 'Node 13' },
@@ -27,6 +28,7 @@ class BinaryTreeContainer extends Component {
           { id: 27, label: 'Node 27' },
         ],
         edges: [],
+        legend: [{ node: -1 }, { description: 'Tree is initialized.' }],
       },
     ],
   }
@@ -120,8 +122,6 @@ class BinaryTreeContainer extends Component {
         nodeValue: '',
       });
     }
-
-    console.log('log', history[step + 1]);
 
     return null;
   }
@@ -221,21 +221,24 @@ class BinaryTreeContainer extends Component {
     }
 
     return (
-      <section>
+      <section className={style.container}>
         <Helmet>
           <title>Binary tree</title>
         </Helmet>
 
-        <Graph
-          graph={history[step]}
-          node={nodeValue}
-          onChangeNode={changeNodeValue}
-          onNext={nextStep}
-          onPrev={prevStep}
-          onAdd={() => addNode(nodeValue)}
-          onRemove={() => removeNode(nodeValue)}
-          onClear={removeAll}
-        />
+        <div className={style.content}>
+          <Legend legend={history[step].legend} />
+          <Graph
+            graph={history[step]}
+            node={nodeValue}
+            onChangeNode={changeNodeValue}
+            onNext={nextStep}
+            onPrev={prevStep}
+            onAdd={() => addNode(nodeValue)}
+            onRemove={() => removeNode(nodeValue)}
+            onClear={removeAll}
+          />
+        </div>
       </section>
     );
   }

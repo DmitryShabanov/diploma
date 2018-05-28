@@ -1,6 +1,4 @@
 // https://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/
-import { nodeSelectedColor, nodeInsertedColor } from '../constants';
-
 class Node {
   constructor(data) {
     this.data = data;
@@ -87,8 +85,7 @@ class BinarySearchTree {
     } else {
       this.algoritmLegend.push({
         node: newNode.data,
-        color: nodeInsertedColor,
-        description: '',
+        description: `Inserting the new node ${data}`,
       });
       this.insertNode(this.root, newNode);
     }
@@ -99,13 +96,11 @@ class BinarySearchTree {
   insertNode(node, newNode) {
     const legend = {
       node: null,
-      color: null,
       description: '',
     };
 
     if (newNode.data < node.data) {
       legend.node = node.data;
-      legend.color = nodeSelectedColor;
       legend.description = `New node ${newNode.data} < node ${node.data}`;
 
       if (node.left === null) {
@@ -125,13 +120,11 @@ class BinarySearchTree {
       node.right = newNode;
 
       legend.node = node.data;
-      legend.color = nodeSelectedColor;
       legend.description = `New node ${newNode.data} > node ${node.data}, and right leaf is empty => node ${node.data} right leaf = node ${newNode.data}`;
 
       this.algoritmLegend.push(legend);
     } else {
       legend.node = node.data;
-      legend.color = nodeSelectedColor;
       legend.description = `New node ${newNode.data} > node ${node.data}, and right leaf is not empty => go to the right leaf`;
 
       this.algoritmLegend.push(legend);

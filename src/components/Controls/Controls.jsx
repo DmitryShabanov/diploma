@@ -23,6 +23,11 @@ const Controls = (props) => {
         placeholder="Node"
         value={node}
         onChange={event => onChangeNode(event.target.value)}
+        onKeyPress={(event) => {
+          if (event.key === 'Enter') {
+            onAdd();
+          }
+        }}
       />
       <button
         className={style.button}
@@ -48,14 +53,14 @@ const Controls = (props) => {
       <button
         className={style.button}
         onClick={onPrev}
-        data-tip="Previous state"
+        data-tip="Previous step"
       >
         Prev
       </button>
       <button
         className={style.button}
         onClick={onNext}
-        data-tip="Next state"
+        data-tip="Next step"
       >
         Next
       </button>
