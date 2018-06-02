@@ -311,7 +311,7 @@ class BinarySearchTree {
     const node = this.findMinNode(this.root);
 
     legend.node = node.data;
-    legend.description = 'The min node finded!';
+    legend.description = 'The min node found!';
     this.algoritmLegend.push({ ...legend });
 
     this.treeToHistory();
@@ -324,12 +324,12 @@ class BinarySearchTree {
     };
 
     if (node.left === null) {
-      legend.description = `Left child of the node ${node.data} is empty. The min node is ${node.data}`;
+      legend.description = `Left child of the node ${node.data} is empty => the min node is ${node.data}`;
       this.algoritmLegend.push(legend);
 
       return node;
     } else {
-      legend.description = `Node ${node.data} have a left child, continue search in the left subtree`;
+      legend.description = `Node ${node.data} have a left child => continue search in the left subtree`;
       this.algoritmLegend.push(legend);
 
       return this.findMinNode(node.left);
@@ -346,7 +346,7 @@ class BinarySearchTree {
     const node = this.findMaxNode(this.root);
 
     legend.node = node.data;
-    legend.description = 'The max node finded!';
+    legend.description = 'The max node found!';
     this.algoritmLegend.push({ ...legend });
 
     this.treeToHistory();
@@ -359,12 +359,12 @@ class BinarySearchTree {
     };
 
     if (node.right === null) {
-      legend.description = `Right child of the node ${node.data} is empty. The max node is ${node.data}`;
+      legend.description = `Right child of the node ${node.data} is empty => the max node is ${node.data}`;
       this.algoritmLegend.push(legend);
 
       return node;
     } else {
-      legend.description = `Node ${node.data} have a right child, continue search in the right subtree`;
+      legend.description = `Node ${node.data} have a right child => continue search in the right subtree`;
       this.algoritmLegend.push(legend);
 
       return this.findMaxNode(node.right);
