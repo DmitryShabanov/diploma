@@ -11,9 +11,9 @@
   display: flex;
 
   width: 420px;
-  height: 30px;
 
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .input {
@@ -23,6 +23,7 @@
   box-sizing: border-box;
   width: 120px;
   height: 30px;
+  margin-bottom: 5px;
   padding: 10px;
 
   transition: 0.25s;
@@ -47,6 +48,7 @@
 
   box-sizing: border-box;
   height: 30px;
+  margin-bottom: 5px;
   margin-left: 5px;
   padding: 0 10px;
 
