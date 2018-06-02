@@ -10,7 +10,10 @@
 
   display: flex;
 
+  width: 420px;
   height: 30px;
+
+  flex-wrap: wrap;
 }
 
 .input {

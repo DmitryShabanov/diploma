@@ -209,6 +209,56 @@ class BinaryTreeContainer extends Component {
     return null;
   }
 
+  findMin = () => {
+    const { tree, step, history } = this.state;
+
+    if (step < history.length - 1) {
+      const newHistory = history.slice(0, step + 1);
+      const newTree = new BinarySearchTree(newHistory, step);
+
+      newTree.findMin();
+
+      this.setState({
+        history: newHistory,
+        tree: newTree,
+        step: step + 1,
+      });
+    } else {
+      tree.findMin();
+
+      this.setState({
+        step: step + 1,
+      });
+    }
+
+    return null;
+  }
+
+  findMax = () => {
+    const { tree, step, history } = this.state;
+
+    if (step < history.length - 1) {
+      const newHistory = history.slice(0, step + 1);
+      const newTree = new BinarySearchTree(newHistory, step);
+
+      newTree.findMax();
+
+      this.setState({
+        history: newHistory,
+        tree: newTree,
+        step: step + 1,
+      });
+    } else {
+      tree.findMax();
+
+      this.setState({
+        step: step + 1,
+      });
+    }
+
+    return null;
+  }
+
   render() {
     const {
       changeNodeValue,
@@ -217,6 +267,8 @@ class BinaryTreeContainer extends Component {
       addNode,
       removeNode,
       searchNode,
+      findMin,
+      findMax,
     } = this;
 
     const {
@@ -247,6 +299,8 @@ class BinaryTreeContainer extends Component {
             onAdd={() => addNode(nodeValue)}
             onRemove={() => removeNode(nodeValue)}
             onSearch={() => searchNode(nodeValue)}
+            onFindMin={findMin}
+            onFindMax={findMax}
           />
         </div>
       </section>

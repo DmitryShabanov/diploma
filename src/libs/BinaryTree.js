@@ -106,11 +106,11 @@ class BinarySearchTree {
       if (node.left === null) {
         node.left = newNode;
 
-        legend.description = legend.description + `, and left leaf is empty => node ${node.data} left leaf = node ${newNode.data}. Node inserted!`;
+        legend.description = legend.description + `, and left child is empty => node ${node.data} left child = node ${newNode.data}. Node inserted!`;
 
         this.algoritmLegend.push(legend);
       } else {
-        legend.description = legend.description + `, and left leaf is not empty => go to the left subtree`;
+        legend.description = legend.description + `, and left child is not empty => go to the left subtree`;
 
         this.algoritmLegend.push(legend);
 
@@ -120,12 +120,12 @@ class BinarySearchTree {
       node.right = newNode;
 
       legend.node = node.data;
-      legend.description = `New node ${newNode.data} > node ${node.data}, and right leaf is empty => node ${node.data} right leaf = node ${newNode.data}. Node inserted!`;
+      legend.description = `New node ${newNode.data} > node ${node.data}, and right child is empty => node ${node.data} right child = node ${newNode.data}. Node inserted!`;
 
       this.algoritmLegend.push(legend);
     } else {
       legend.node = node.data;
-      legend.description = `New node ${newNode.data} > node ${node.data}, and right leaf is not empty => go to the right subtree`;
+      legend.description = `New node ${newNode.data} > node ${node.data}, and right child is not empty => go to the right subtree`;
 
       this.algoritmLegend.push(legend);
 
@@ -200,7 +200,7 @@ class BinarySearchTree {
       return node;
     }
 
-    const aux = this.findMinNode(node.right);
+    const aux = this.findMinNodeInitial(node.right);
 
     legend.description = `Value ${key} = node ${node.data} and node have two children => node ${node.data} = min node from right subtree(node ${aux.data}). Then delete node ${aux.data} from right subtree`;
     this.algoritmLegend.push(legend);
@@ -230,21 +230,21 @@ class BinarySearchTree {
     }
   }
 
-  inorder(node) {
-    if (node !== null) {
-      this.inorder(node.left);
-      console.log(node.data);
-      this.inorder(node.right);
-    }
-  }
+  // inorder(node) {
+  //   if (node !== null) {
+  //     this.inorder(node.left);
+  //     console.log(node.data);
+  //     this.inorder(node.right);
+  //   }
+  // }
 
-  postorder(node) {
-    if (node !== null) {
-      this.postorder(node.left);
-      this.postorder(node.right);
-      console.log(node.data);
-    }
-  }
+  // postorder(node) {
+  //   if (node !== null) {
+  //     this.postorder(node.left);
+  //     this.postorder(node.right);
+  //     console.log(node.data);
+  //   }
+  // }
 
   find(node) {
     const legend = {
@@ -293,18 +293,80 @@ class BinarySearchTree {
     return node;
   }
 
-  findMinNode(node) {
+  findMinNodeInitial(node) {
     if (node.left === null) {
       return node;
     } else {
+      return this.findMinNodeInitial(node.left);
+    }
+  }
+
+  findMin() {
+    const legend = {
+      node: this.root.data,
+      description: 'Searching the min node',
+    };
+    this.algoritmLegend.push({ ...legend });
+
+    const node = this.findMinNode(this.root);
+
+    legend.node = node.data;
+    legend.description = 'The min node finded!';
+    this.algoritmLegend.push({ ...legend });
+
+    this.treeToHistory();
+  }
+
+  findMinNode(node) {
+    const legend = {
+      node: node.data,
+      description: '',
+    };
+
+    if (node.left === null) {
+      legend.description = `Left child of the node ${node.data} is empty. The min node is ${node.data}`;
+      this.algoritmLegend.push(legend);
+
+      return node;
+    } else {
+      legend.description = `Node ${node.data} have a left child, continue search in the left subtree`;
+      this.algoritmLegend.push(legend);
+
       return this.findMinNode(node.left);
     }
   }
 
+  findMax() {
+    const legend = {
+      node: this.root.data,
+      description: 'Searching the max node',
+    };
+    this.algoritmLegend.push({ ...legend });
+
+    const node = this.findMaxNode(this.root);
+
+    legend.node = node.data;
+    legend.description = 'The max node finded!';
+    this.algoritmLegend.push({ ...legend });
+
+    this.treeToHistory();
+  }
+
   findMaxNode(node) {
+    const legend = {
+      node: node.data,
+      description: '',
+    };
+
     if (node.right === null) {
+      legend.description = `Right child of the node ${node.data} is empty. The max node is ${node.data}`;
+      this.algoritmLegend.push(legend);
+
       return node;
     } else {
+      legend.description = `Node ${node.data} have a right child, continue search in the right subtree`;
+      this.algoritmLegend.push(legend);
+
       return this.findMaxNode(node.right);
     }
   }

@@ -13,6 +13,8 @@ const Controls = (props) => {
     onAdd,
     onRemove,
     onSearch,
+    onFindMin,
+    onFindMax,
   } = props;
 
   return (
@@ -64,6 +66,20 @@ const Controls = (props) => {
       >
         Next
       </button>
+      <button
+        className={style.button}
+        onClick={onFindMin}
+        data-tip="Find min node"
+      >
+        Min
+      </button>
+      <button
+        className={style.button}
+        onClick={onFindMax}
+        data-tip="Find max node"
+      >
+        Max
+      </button>
       <ReactTooltip
         className={style.tooltip}
         effect="solid"
@@ -81,6 +97,8 @@ Controls.propTypes = {
   onAdd: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
+  onFindMin: PropTypes.func.isRequired,
+  onFindMax: PropTypes.func.isRequired,
 };
 
 export default Controls;

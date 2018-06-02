@@ -18,6 +18,8 @@ const MyGaraph = (props) => {
     onAdd,
     onRemove,
     onSearch,
+    onFindMin,
+    onFindMax,
   } = props;
 
   return (
@@ -30,6 +32,8 @@ const MyGaraph = (props) => {
         onAdd={onAdd}
         onRemove={onRemove}
         onSearch={onSearch}
+        onFindMin={onFindMin}
+        onFindMax={onFindMax}
       />
       <Graph
         graph={graph}
@@ -56,6 +60,8 @@ MyGaraph.propTypes = {
   onAdd: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
+  onFindMin: PropTypes.func.isRequired,
+  onFindMax: PropTypes.func.isRequired,
 };
 
 export default MyGaraph;
