@@ -17,7 +17,9 @@ const MyGaraph = (props) => {
     onPrev,
     onAdd,
     onRemove,
-    onClear,
+    onSearch,
+    onFindMin,
+    onFindMax,
   } = props;
 
   return (
@@ -29,11 +31,18 @@ const MyGaraph = (props) => {
         onPrev={onPrev}
         onAdd={onAdd}
         onRemove={onRemove}
-        onClear={onClear}
+        onSearch={onSearch}
+        onFindMin={onFindMin}
+        onFindMax={onFindMax}
       />
       <Graph
         graph={graph}
         options={graphOptions}
+        events={{
+          select: (selected) => {
+            onChangeNode(String(selected.nodes[0] ? selected.nodes[0] : ''));
+          },
+        }}
       />
     </div>
   );
@@ -50,7 +59,9 @@ MyGaraph.propTypes = {
   onPrev: PropTypes.func.isRequired,
   onAdd: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
-  onClear: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
+  onFindMin: PropTypes.func.isRequired,
+  onFindMax: PropTypes.func.isRequired,
 };
 
 export default MyGaraph;
