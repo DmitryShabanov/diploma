@@ -55,8 +55,6 @@ class BinaryTreeContainer extends Component {
   nextStep = () => {
     const { step, history } = this.state;
 
-    console.log('log', history[step + 1]);
-
     if (step + 1 < history.length) {
       this.setState({
         step: step + 1,
@@ -67,8 +65,6 @@ class BinaryTreeContainer extends Component {
 
   prevStep = () => {
     const { step, history } = this.state;
-
-    console.log('log', history[step - 1]);
 
     if (step - 1 >= 0) {
       this.setState({

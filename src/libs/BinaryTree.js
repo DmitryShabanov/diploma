@@ -370,6 +370,30 @@ class BinarySearchTree {
       return this.findMaxNode(node.right);
     }
   }
+
+  getTreeHeight(node) {
+    if (node === null) {
+      return 0;
+    }
+
+    let left, right;
+
+    if (node.left) {
+      left = this.getTreeHeight(node.left);
+    } else {
+      left = -1;
+    }
+
+    if (node.right) {
+      right = this.getTreeHeight(node.right);
+    } else {
+      right = -1;
+    }
+
+    const max = left > right ? left : right;
+
+    return max + 1;
+  }
 }
 
 export default BinarySearchTree;
