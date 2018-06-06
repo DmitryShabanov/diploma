@@ -255,6 +255,81 @@ class BinaryTreeContainer extends Component {
     return null;
   }
 
+  inorder = () => {
+    const { tree, step, history } = this.state;
+
+    if (step < history.length - 1) {
+      const newHistory = history.slice(0, step + 1);
+      const newTree = new BinarySearchTree(newHistory, step);
+
+      newTree.runInorder();
+
+      this.setState({
+        history: newHistory,
+        tree: newTree,
+        step: step + 1,
+      });
+    } else {
+      tree.runInorder();
+
+      this.setState({
+        step: step + 1,
+      });
+    }
+
+    return null;
+  }
+
+  postorder = () => {
+    const { tree, step, history } = this.state;
+
+    if (step < history.length - 1) {
+      const newHistory = history.slice(0, step + 1);
+      const newTree = new BinarySearchTree(newHistory, step);
+
+      newTree.runPostorder();
+
+      this.setState({
+        history: newHistory,
+        tree: newTree,
+        step: step + 1,
+      });
+    } else {
+      tree.runPostorder();
+
+      this.setState({
+        step: step + 1,
+      });
+    }
+
+    return null;
+  }
+
+  preorder = () => {
+    const { tree, step, history } = this.state;
+
+    if (step < history.length - 1) {
+      const newHistory = history.slice(0, step + 1);
+      const newTree = new BinarySearchTree(newHistory, step);
+
+      newTree.runPreorder();
+
+      this.setState({
+        history: newHistory,
+        tree: newTree,
+        step: step + 1,
+      });
+    } else {
+      tree.runPreorder();
+
+      this.setState({
+        step: step + 1,
+      });
+    }
+
+    return null;
+  }
+
   render() {
     const {
       changeNodeValue,
@@ -265,6 +340,9 @@ class BinaryTreeContainer extends Component {
       searchNode,
       findMin,
       findMax,
+      inorder,
+      postorder,
+      preorder,
     } = this;
 
     const {
@@ -297,6 +375,9 @@ class BinaryTreeContainer extends Component {
             onSearch={() => searchNode(nodeValue)}
             onFindMin={findMin}
             onFindMax={findMax}
+            onInorder={inorder}
+            onPostorder={postorder}
+            onPreorder={preorder}
           />
         </div>
       </section>

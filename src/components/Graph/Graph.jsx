@@ -20,6 +20,9 @@ const MyGaraph = (props) => {
     onSearch,
     onFindMin,
     onFindMax,
+    onInorder,
+    onPostorder,
+    onPreorder,
   } = props;
 
   return (
@@ -34,6 +37,9 @@ const MyGaraph = (props) => {
         onSearch={onSearch}
         onFindMin={onFindMin}
         onFindMax={onFindMax}
+        onInorder={onInorder}
+        onPostorder={onPostorder}
+        onPreorder={onPreorder}
       />
       <Graph
         graph={graph}
@@ -62,6 +68,9 @@ MyGaraph.propTypes = {
   onSearch: PropTypes.func.isRequired,
   onFindMin: PropTypes.func.isRequired,
   onFindMax: PropTypes.func.isRequired,
+  onInorder: PropTypes.func.isRequired,
+  onPostorder: PropTypes.func.isRequired,
+  onPreorder: PropTypes.func.isRequired,
 };
 
 export default MyGaraph;

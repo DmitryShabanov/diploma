@@ -15,6 +15,9 @@ const Controls = (props) => {
     onSearch,
     onFindMin,
     onFindMax,
+    onInorder,
+    onPostorder,
+    onPreorder,
   } = props;
 
   return (
@@ -68,6 +71,27 @@ const Controls = (props) => {
       </button>
       <button
         className={style.button}
+        onClick={onPreorder}
+        data-tip="Pre-order traversal"
+      >
+        Preorder
+      </button>
+      <button
+        className={style.button}
+        onClick={onInorder}
+        data-tip="In-order traversal"
+      >
+        Inorder
+      </button>
+      <button
+        className={style.button}
+        onClick={onPostorder}
+        data-tip="Post-order traversal"
+      >
+        Postorder
+      </button>
+      <button
+        className={style.button}
         onClick={onFindMin}
         data-tip="Find min node"
       >
@@ -99,6 +123,9 @@ Controls.propTypes = {
   onSearch: PropTypes.func.isRequired,
   onFindMin: PropTypes.func.isRequired,
   onFindMax: PropTypes.func.isRequired,
+  onInorder: PropTypes.func.isRequired,
+  onPostorder: PropTypes.func.isRequired,
+  onPreorder: PropTypes.func.isRequired,
 };
 
 export default Controls;
