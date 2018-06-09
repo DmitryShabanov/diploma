@@ -19,7 +19,7 @@ export const graphOptions = {
     dragNodes: false,
   },
   autoResize: true,
-  // physics: {
-  //   enabled: false,
-  // },
+  physics: {
+    enabled: false,
+  },
 };

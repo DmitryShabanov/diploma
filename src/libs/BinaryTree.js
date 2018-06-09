@@ -1,4 +1,3 @@
-// https://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/
 class Node {
   constructor(data) {
     this.data = data;

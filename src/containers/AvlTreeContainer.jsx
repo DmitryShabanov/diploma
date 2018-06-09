@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 
-import BinarySearchTree from '../libs/BinaryTree';
+import AVLTree from '../libs/AvlTree';
 
 import Graph from '../components/Graph';
 import Legend from '../components/Legend';
 
-import style from './BinaryTreeContainer.scss';
+import style from './AvlTreeContainer.scss';
 
-class BinaryTreeContainer extends Component {
+class AvlTreeContainer extends Component {
   state = {
     isLoaded: false,
     nodeValue: '',
@@ -17,15 +17,13 @@ class BinaryTreeContainer extends Component {
       {
         nodes: [
           { id: 15 },
-          { id: 25 },
           { id: 10 },
-          { id: 7 },
-          { id: 22 },
-          { id: 17 },
-          { id: 13 },
-          { id: 5 },
           { id: 9 },
-          { id: 28 },
+          { id: 7 },
+          { id: 5 },
+          { id: 4 },
+          { id: 3 },
+          { id: 1 },
         ],
         edges: [],
         legend: [{ node: -1, description: 'Tree is initialized.' }],
@@ -41,7 +39,7 @@ class BinaryTreeContainer extends Component {
     const { history } = this.state;
 
     this.setState({
-      tree: new BinarySearchTree(history),
+      tree: new AVLTree(history),
       isLoaded: true,
     });
   }
@@ -58,7 +56,7 @@ class BinaryTreeContainer extends Component {
     if (step + 1 < history.length) {
       this.setState({
         step: step + 1,
-        tree: new BinarySearchTree(history, step + 1),
+        tree: new AVLTree(history, step + 1),
       });
     }
   }
@@ -69,7 +67,7 @@ class BinaryTreeContainer extends Component {
     if (step - 1 >= 0) {
       this.setState({
         step: step - 1,
-        tree: new BinarySearchTree(history, step - 1),
+        tree: new AVLTree(history, step - 1),
       });
     }
   }
@@ -95,9 +93,9 @@ class BinaryTreeContainer extends Component {
 
       if (step < history.length - 1) {
         const newHistory = history.slice(0, step + 1);
-        const newTree = new BinarySearchTree(newHistory, step);
+        const newTree = new AVLTree(newHistory, step);
 
-        newTree.insert(node);
+        newTree.addNode(node);
 
         this.setState({
           history: newHistory,
@@ -106,7 +104,7 @@ class BinaryTreeContainer extends Component {
           nodeValue: '',
         });
       } else {
-        tree.insert(node);
+        tree.addNode(node);
 
         this.setState({
           step: step + 1,
@@ -143,9 +141,9 @@ class BinaryTreeContainer extends Component {
 
       if (step < history.length - 1) {
         const newHistory = history.slice(0, step + 1);
-        const newTree = new BinarySearchTree(newHistory, step);
+        const newTree = new AVLTree(newHistory, step);
 
-        newTree.remove(node);
+        newTree.deleteNode(node);
 
         this.setState({
           history: newHistory,
@@ -154,7 +152,7 @@ class BinaryTreeContainer extends Component {
           nodeValue: '',
         });
       } else {
-        tree.remove(node);
+        tree.deleteNode(node);
 
         this.setState({
           step: step + 1,
@@ -183,7 +181,7 @@ class BinaryTreeContainer extends Component {
 
     if (step < history.length - 1) {
       const newHistory = history.slice(0, step + 1);
-      const newTree = new BinarySearchTree(newHistory, step);
+      const newTree = new AVLTree(newHistory, step);
 
       newTree.find(node);
 
@@ -210,7 +208,7 @@ class BinaryTreeContainer extends Component {
 
     if (step < history.length - 1) {
       const newHistory = history.slice(0, step + 1);
-      const newTree = new BinarySearchTree(newHistory, step);
+      const newTree = new AVLTree(newHistory, step);
 
       newTree.findMin();
 
@@ -235,7 +233,7 @@ class BinaryTreeContainer extends Component {
 
     if (step < history.length - 1) {
       const newHistory = history.slice(0, step + 1);
-      const newTree = new BinarySearchTree(newHistory, step);
+      const newTree = new AVLTree(newHistory, step);
 
       newTree.findMax();
 
@@ -260,7 +258,7 @@ class BinaryTreeContainer extends Component {
 
     if (step < history.length - 1) {
       const newHistory = history.slice(0, step + 1);
-      const newTree = new BinarySearchTree(newHistory, step);
+      const newTree = new AVLTree(newHistory, step);
 
       newTree.runInorder();
 
@@ -285,7 +283,7 @@ class BinaryTreeContainer extends Component {
 
     if (step < history.length - 1) {
       const newHistory = history.slice(0, step + 1);
-      const newTree = new BinarySearchTree(newHistory, step);
+      const newTree = new AVLTree(newHistory, step);
 
       newTree.runPostorder();
 
@@ -310,7 +308,7 @@ class BinaryTreeContainer extends Component {
 
     if (step < history.length - 1) {
       const newHistory = history.slice(0, step + 1);
-      const newTree = new BinarySearchTree(newHistory, step);
+      const newTree = new AVLTree(newHistory, step);
 
       newTree.runPreorder();
 
@@ -359,7 +357,7 @@ class BinaryTreeContainer extends Component {
     return (
       <section className={style.container}>
         <Helmet>
-          <title>Binary tree</title>
+          <title>AVL tree</title>
         </Helmet>
 
         <div className={style.content}>
@@ -385,4 +383,4 @@ class BinaryTreeContainer extends Component {
   }
 }
 
-export default BinaryTreeContainer;
+export default AvlTreeContainer;
