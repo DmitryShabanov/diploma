@@ -26,12 +26,12 @@ const Header = () => (
           Binary tree
         </NavLink>
         <NavLink
-          to="/red-black-tree"
+          to="/avl-tree"
           exact
           className={style.navItem}
           activeClassName={style.activeLink}
         >
-          Red-black tree
+          AVL tree
         </NavLink>
       </nav>
       <a className={style.git} href="https://github.com/DmitryShabanov/diploma">

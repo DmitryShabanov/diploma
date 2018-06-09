@@ -1,4 +1,3 @@
-// https://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/
 class Node {
   constructor(data) {
     this.data = data;
@@ -44,7 +43,7 @@ class BinarySearchTree {
 
     this.algoritmLegend = [];
 
-    this.preorder(snapshot, null, this.root);
+    this.initialPreorder(snapshot, null, this.root);
 
     if (!step) {
       this.history.push(snapshot);
@@ -211,7 +210,7 @@ class BinarySearchTree {
     return node;
   }
 
-  preorder(snapshot, prevNode, currentNode) {
+  initialPreorder(snapshot, prevNode, currentNode) {
     if (currentNode !== null) {
       snapshot.nodes.push({
         id: currentNode.data,
@@ -225,26 +224,89 @@ class BinarySearchTree {
         });
       }
 
-      this.preorder(snapshot, currentNode, currentNode.left);
-      this.preorder(snapshot, currentNode, currentNode.right);
+      this.initialPreorder(snapshot, currentNode, currentNode.left);
+      this.initialPreorder(snapshot, currentNode, currentNode.right);
     }
   }
 
-  // inorder(node) {
-  //   if (node !== null) {
-  //     this.inorder(node.left);
-  //     console.log(node.data);
-  //     this.inorder(node.right);
-  //   }
-  // }
+  runPreorder() {
+    const legend = {
+      node: this.root.data,
+      description: 'Pre-order traversal',
+    };
 
-  // postorder(node) {
-  //   if (node !== null) {
-  //     this.postorder(node.left);
-  //     this.postorder(node.right);
-  //     console.log(node.data);
-  //   }
-  // }
+    this.algoritmLegend.push(legend);
+    this.preorder(this.root);
+    this.treeToHistory();
+  }
+
+  preorder(node) {
+    if (node !== null) {
+      let legend = {
+        node: node.data,
+        description: '',
+      };
+
+      legend.description = `Display node ${node.data}`;
+      this.algoritmLegend.push({ ... legend });
+
+      this.preorder(node.left);
+      this.preorder(node.right);
+    }
+  }
+
+  runInorder() {
+    const legend = {
+      node: this.root.data,
+      description: 'In-order traversal',
+    };
+
+    this.algoritmLegend.push(legend);
+    this.inorder(this.root);
+    this.treeToHistory();
+  }
+
+  inorder(node) {
+    if (node !== null) {
+      let legend = {
+        node: node.data,
+        description: '',
+      };
+
+      this.inorder(node.left);
+
+      legend.description = `Display node ${node.data}`;
+      this.algoritmLegend.push({ ... legend });
+
+      this.inorder(node.right);
+    }
+  }
+
+  runPostorder() {
+    const legend = {
+      node: this.root.data,
+      description: 'Post-order traversal',
+    };
+
+    this.algoritmLegend.push(legend);
+    this.postorder(this.root);
+    this.treeToHistory();
+  }
+
+  postorder(node) {
+    if (node !== null) {
+      let legend = {
+        node: node.data,
+        description: '',
+      };
+
+      this.postorder(node.left);
+      this.postorder(node.right);
+
+      legend.description = `Display node ${node.data}`;
+      this.algoritmLegend.push({ ... legend });
+    }
+  }
 
   find(node) {
     const legend = {
@@ -369,6 +431,30 @@ class BinarySearchTree {
 
       return this.findMaxNode(node.right);
     }
+  }
+
+  getTreeHeight(node) {
+    if (node === null) {
+      return 0;
+    }
+
+    let left, right;
+
+    if (node.left) {
+      left = this.getTreeHeight(node.left);
+    } else {
+      left = -1;
+    }
+
+    if (node.right) {
+      right = this.getTreeHeight(node.right);
+    } else {
+      right = -1;
+    }
+
+    const max = left > right ? left : right;
+
+    return max + 1;
   }
 }
 
