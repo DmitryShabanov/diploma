@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { translate } from 'react-i18next';
+
+import GitHubLogo from '../../images/github-logo.svg';
+import En from '../../images/en.svg';
+import Ru from '../../images/ru.svg';
+import Ua from '../../images/ua.svg';
 
 import style from './Header.scss';
 
-import GitHubLogo from '../../images/github-logo.svg';
-
-const Header = () => (
+const Header = ({ t, i18n }) => (
   <header className={style.header}>
     <div className={style.content}>
       <nav className={style.navBar}>
@@ -15,7 +20,7 @@ const Header = () => (
           className={style.navItem}
           activeClassName={style.activeLink}
         >
-          About
+          {t('header.about')}
         </NavLink>
         <NavLink
           to="/binary-tree"
@@ -23,7 +28,7 @@ const Header = () => (
           className={style.navItem}
           activeClassName={style.activeLink}
         >
-          Binary tree
+          {t('header.binary')}
         </NavLink>
         <NavLink
           to="/avl-tree"
@@ -31,14 +36,39 @@ const Header = () => (
           className={style.navItem}
           activeClassName={style.activeLink}
         >
-          AVL tree
+          {t('header.avl')}
         </NavLink>
       </nav>
-      <a className={style.git} href="https://github.com/DmitryShabanov/diploma">
-        <GitHubLogo className={style.gitIcon} />
-      </a>
+      <div className={style.options}>
+        <div
+          onClick={() => i18n.changeLanguage('en')}
+          className={style.flagWrapper}
+        >
+          <En className={style.flagIcon} />
+        </div>
+        <div
+          onClick={() => i18n.changeLanguage('ru')}
+          className={style.flagWrapper}
+        >
+          <Ru className={style.flagIcon} />
+        </div>
+        <div
+          onClick={() => i18n.changeLanguage('ua')}
+          className={style.flagWrapper}
+        >
+          <Ua className={style.flagIcon} />
+        </div>
+        <a className={style.git} href="https://github.com/DmitryShabanov/diploma">
+          <GitHubLogo className={style.gitIcon} />
+        </a>
+      </div>
     </div>
   </header>
 );
 
-export default Header;
+Header.propTypes = {
+  t: PropTypes.func.isRequired,
+  i18n: PropTypes.object.isRequired,
+};
+
+export default translate()(Header);

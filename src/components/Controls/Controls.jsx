@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
+import { translate } from 'react-i18next';
 
 import style from './Controls.scss';
 
@@ -18,6 +19,7 @@ const Controls = (props) => {
     onInorder,
     onPostorder,
     onPreorder,
+    t,
   } = props;
 
   return (
@@ -25,7 +27,7 @@ const Controls = (props) => {
       <input
         className={style.input}
         type="text"
-        placeholder="Node"
+        placeholder={t('controls.node')}
         value={node}
         onChange={event => onChangeNode(event.target.value)}
         onKeyPress={(event) => {
@@ -37,72 +39,72 @@ const Controls = (props) => {
       <button
         className={style.button}
         onClick={onAdd}
-        data-tip="Add node"
+        data-tip={t('controls.addE')}
       >
-        Add
+        {t('controls.add')}
       </button>
       <button
         className={style.button}
         onClick={onRemove}
-        data-tip="Delete node"
+        data-tip={t('controls.deleteE')}
       >
-        Delete
+        {t('controls.delete')}
       </button>
       <button
         className={style.button}
         onClick={onSearch}
-        data-tip="Search node"
+        data-tip={t('controls.searcheE')}
       >
-        Search
+        {t('controls.searche')}
       </button>
       <button
         className={style.button}
         onClick={onPrev}
-        data-tip="Previous step"
+        data-tip={t('controls.prevE')}
       >
-        Prev
+        {t('controls.prev')}
       </button>
       <button
         className={style.button}
         onClick={onNext}
-        data-tip="Next step"
+        data-tip={t('controls.nextE')}
       >
-        Next
+        {t('controls.next')}
       </button>
       <button
         className={style.button}
         onClick={onPreorder}
-        data-tip="Pre-order traversal"
+        data-tip={t('controls.preorderE')}
       >
-        Preorder
+        {t('controls.preorder')}
       </button>
       <button
         className={style.button}
         onClick={onInorder}
-        data-tip="In-order traversal"
+        data-tip={t('controls.inorderE')}
       >
-        Inorder
+        {t('controls.inorder')}
       </button>
       <button
         className={style.button}
         onClick={onPostorder}
-        data-tip="Post-order traversal"
+        data-tip={t('controls.postorderE')}
       >
-        Postorder
+        {t('controls.postorder')}
       </button>
       <button
         className={style.button}
         onClick={onFindMin}
-        data-tip="Find min node"
+        data-tip={t('controls.minE')}
       >
-        Min
+        {t('controls.min')}
       </button>
       <button
         className={style.button}
         onClick={onFindMax}
-        data-tip="Find max node"
+        data-tip={t('controls.maxE')}
       >
-        Max
+        {t('controls.max')}
       </button>
       <ReactTooltip
         className={style.tooltip}
@@ -126,6 +128,7 @@ Controls.propTypes = {
   onInorder: PropTypes.func.isRequired,
   onPostorder: PropTypes.func.isRequired,
   onPreorder: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default Controls;
+export default translate()(Controls);

@@ -50,6 +50,8 @@ class AVLTree {
 
     this.initialPreorder(snapshot, null, this.root);
 
+    snapshot.nodes.sort((a, b) => a.id < b.id ? 1 : -1);
+
     if (!step) {
       this.history.push(snapshot);
     } else {

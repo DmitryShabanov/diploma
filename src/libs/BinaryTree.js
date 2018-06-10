@@ -7,9 +7,10 @@ class Node {
 }
 
 class BinarySearchTree {
-  constructor(history, step) {
+  constructor(history, step, translations) {
     this.root = null;
     this.history = history;
+    this.translations = translations;
 
     if (!step) {
       const { nodes } = history[history.length - 1];
@@ -84,7 +85,7 @@ class BinarySearchTree {
     } else {
       this.algoritmLegend.push({
         node: newNode.data,
-        description: `Inserting the new node ${data}`,
+        description: `${this.translations.i1} ${data}`,
       });
       this.insertNode(this.root, newNode);
     }
@@ -100,16 +101,16 @@ class BinarySearchTree {
 
     if (newNode.data < node.data) {
       legend.node = node.data;
-      legend.description = `New node ${newNode.data} < node ${node.data}`;
+      legend.description = `${this.translations.i2} ${newNode.data} ${this.translations.i3} ${node.data}`;
 
       if (node.left === null) {
         node.left = newNode;
 
-        legend.description = legend.description + `, and left child is empty => node ${node.data} left child = node ${newNode.data}. Node inserted!`;
+        legend.description = legend.description + `${this.translations.i4} ${node.data} ${this.translations.i5} ${newNode.data}. ${this.translations.i6}`;
 
         this.algoritmLegend.push(legend);
       } else {
-        legend.description = legend.description + `, and left child is not empty => go to the left subtree`;
+        legend.description = legend.description + this.translations.i7;
 
         this.algoritmLegend.push(legend);
 
@@ -119,12 +120,12 @@ class BinarySearchTree {
       node.right = newNode;
 
       legend.node = node.data;
-      legend.description = `New node ${newNode.data} > node ${node.data}, and right child is empty => node ${node.data} right child = node ${newNode.data}. Node inserted!`;
+      legend.description = `${this.translations.i2} ${newNode.data} ${this.translations.i8} ${node.data}, ${this.translations.i9} ${node.data} ${this.translations.i10} ${newNode.data}. ${this.translations.i6}`;
 
       this.algoritmLegend.push(legend);
     } else {
       legend.node = node.data;
-      legend.description = `New node ${newNode.data} > node ${node.data}, and right child is not empty => go to the right subtree`;
+      legend.description = `${this.translations.i2} ${newNode.data} ${this.translations.i8} ${node.data}, ${this.translations.i11}`;
 
       this.algoritmLegend.push(legend);
 
@@ -135,7 +136,7 @@ class BinarySearchTree {
   remove(data) {
     const legend = {
       node: data,
-      description: `Deleting the node ${data}`,
+      description: `${this.translations.r1} ${data}`,
     };
     this.algoritmLegend.push(legend);
 
@@ -150,7 +151,7 @@ class BinarySearchTree {
     };
 
     if (node === null) {
-      legend.description = 'Tree is empty!';
+      legend.description = this.translations.r2;
       this.algoritmLegend.push(legend);
 
       return null;
@@ -158,7 +159,7 @@ class BinarySearchTree {
 
     if (key < node.data) {
       legend.node = node.data;
-      legend.description = `Value ${key} < node ${node.data} => go to the left subtree`;
+      legend.description = `${this.translations.r3} ${key} ${this.translations.i3} ${node.data} ${this.translations.r4}`;
       this.algoritmLegend.push(legend);
       node.left = this.removeNode(node.left, key);
 
@@ -167,7 +168,7 @@ class BinarySearchTree {
 
     if (key > node.data) {
       legend.node = node.data;
-      legend.description = `Value ${key} > node ${node.data} => go to the right subtree`;
+      legend.description = `${this.translations.r3} ${key} ${this.translations.i8} ${node.data} ${this.translations.r5}`;
       this.algoritmLegend.push(legend);
       node.right = this.removeNode(node.right, key);
 
@@ -177,14 +178,14 @@ class BinarySearchTree {
     legend.node = node.data;
 
     if (node.left === null && node.right === null){
-      legend.description = `Value ${key} = node ${node.data} and node have not children => node ${node.data} = null. Node removed!`;
+      legend.description = `${this.translations.r3} ${key} ${this.translations.r6} ${node.data} ${this.translations.r7} ${node.data} ${this.translations.r8}`;
       this.algoritmLegend.push(legend);
       node = null;
       return node;
     }
 
     if (node.left === null) {
-      legend.description = `Value ${key} = node ${node.data} and node have right children => node ${node.data} = right subtree. Node removed!`;
+      legend.description = `${this.translations.r3} ${key} ${this.translations.r6} ${node.data} ${this.translations.r9} ${node.data} `;
       this.algoritmLegend.push(legend);
       node = node.right;
 
@@ -192,7 +193,7 @@ class BinarySearchTree {
     }
 
     if (node.right === null) {
-      legend.description = `Value ${key} = node ${node.data} and node have left children => node ${node.data} = left subtree. Node removed!`;
+      legend.description = `${this.translations.r3} ${key} ${this.translations.r6} ${node.data} ${this.translations.r11} ${node.data} ${this.translations.r12}`;
       this.algoritmLegend.push(legend);
       node = node.left;
 
@@ -201,7 +202,7 @@ class BinarySearchTree {
 
     const aux = this.findMinNodeInitial(node.right);
 
-    legend.description = `Value ${key} = node ${node.data} and node have two children => node ${node.data} = min node from right subtree(node ${aux.data}). Then delete node ${aux.data} from right subtree`;
+    legend.description = `${this.translations.r3} ${key} ${this.translations.r6} ${node.data} ${this.translations.r13} ${node.data} ${this.translations.r14} ${aux.data} ${this.translations.r15} ${aux.data} ${this.translations.r16}`;
     this.algoritmLegend.push(legend);
 
     node.data = aux.data;
@@ -232,7 +233,7 @@ class BinarySearchTree {
   runPreorder() {
     const legend = {
       node: this.root.data,
-      description: 'Pre-order traversal',
+      description: this.translations.o1,
     };
 
     this.algoritmLegend.push(legend);
@@ -247,7 +248,7 @@ class BinarySearchTree {
         description: '',
       };
 
-      legend.description = `Display node ${node.data}`;
+      legend.description = `${this.translations.o2} ${node.data}`;
       this.algoritmLegend.push({ ... legend });
 
       this.preorder(node.left);
@@ -258,7 +259,7 @@ class BinarySearchTree {
   runInorder() {
     const legend = {
       node: this.root.data,
-      description: 'In-order traversal',
+      description: this.translations.o3,
     };
 
     this.algoritmLegend.push(legend);
@@ -275,7 +276,7 @@ class BinarySearchTree {
 
       this.inorder(node.left);
 
-      legend.description = `Display node ${node.data}`;
+      legend.description = `${this.translations.o2} ${node.data}`;
       this.algoritmLegend.push({ ... legend });
 
       this.inorder(node.right);
@@ -285,7 +286,7 @@ class BinarySearchTree {
   runPostorder() {
     const legend = {
       node: this.root.data,
-      description: 'Post-order traversal',
+      description: this.translations.o4,
     };
 
     this.algoritmLegend.push(legend);
@@ -303,7 +304,7 @@ class BinarySearchTree {
       this.postorder(node.left);
       this.postorder(node.right);
 
-      legend.description = `Display node ${node.data}`;
+      legend.description = `${this.translations.o2} ${node.data}`;
       this.algoritmLegend.push({ ... legend });
     }
   }
@@ -311,7 +312,7 @@ class BinarySearchTree {
   find(node) {
     const legend = {
       node: node,
-      description: `Searching the node ${node}`,
+      description: `${this.translations.s1} ${node}`,
     };
     this.algoritmLegend.push(legend);
     this.search(this.root, node);
@@ -320,11 +321,11 @@ class BinarySearchTree {
   search(node, data) {
     const legend = {
       node: null,
-      description: `Searching the node ${data}`,
+      description: `${this.translations.s1} ${data}`,
     };
 
     if (node === null) {
-      legend.description = `There is no node in the tree!`
+      legend.description = this.translations.s2;
       this.algoritmLegend.push(legend);
       this.treeToHistory();
 
@@ -333,7 +334,7 @@ class BinarySearchTree {
 
     if (data < node.data) {
       legend.node = node.data;
-      legend.description = `Searched node ${data} < node ${node.data} => continue search in the left subtree`;
+      legend.description = `${this.translations.s3} ${data} ${this.translations.i3} ${node.data} ${this.translations.s4}`;
       this.algoritmLegend.push(legend);
 
       return this.search(node.left, data);
@@ -341,14 +342,14 @@ class BinarySearchTree {
 
     if (data > node.data) {
       legend.node = node.data;
-      legend.description = `Searched node ${data} > node ${node.data} => continue search in the right subtree`;
+      legend.description = `${this.translations.s3} ${data} ${this.translations.i8} ${node.data} ${this.translations.s5}`;
       this.algoritmLegend.push(legend);
 
       return this.search(node.right, data);
     }
 
     legend.node = node.data;
-    legend.description = `Searched node ${data} = node ${node.data} => node is found!`;
+    legend.description = `${this.translations.s3} ${data} ${this.translations.r6} ${node.data} ${this.translations.s6}`;
     this.algoritmLegend.push(legend);
     this.treeToHistory();
 
@@ -366,14 +367,14 @@ class BinarySearchTree {
   findMin() {
     const legend = {
       node: this.root.data,
-      description: 'Searching the min node',
+      description: this.translations.s7,
     };
     this.algoritmLegend.push({ ...legend });
 
     const node = this.findMinNode(this.root);
 
     legend.node = node.data;
-    legend.description = 'The min node found!';
+    legend.description = this.translations.s8;
     this.algoritmLegend.push({ ...legend });
 
     this.treeToHistory();
@@ -386,12 +387,12 @@ class BinarySearchTree {
     };
 
     if (node.left === null) {
-      legend.description = `Left child of the node ${node.data} is empty => the min node is ${node.data}`;
+      legend.description = `${this.translations.s9} ${node.data} ${this.translations.s10} ${node.data}`;
       this.algoritmLegend.push(legend);
 
       return node;
     } else {
-      legend.description = `Node ${node.data} have a left child => continue search in the left subtree`;
+      legend.description = `${this.translations.s11} ${node.data} ${this.translations.s12}`;
       this.algoritmLegend.push(legend);
 
       return this.findMinNode(node.left);
@@ -401,14 +402,14 @@ class BinarySearchTree {
   findMax() {
     const legend = {
       node: this.root.data,
-      description: 'Searching the max node',
+      description: this.translations.s13,
     };
     this.algoritmLegend.push({ ...legend });
 
     const node = this.findMaxNode(this.root);
 
     legend.node = node.data;
-    legend.description = 'The max node found!';
+    legend.description = this.translations.s14;
     this.algoritmLegend.push({ ...legend });
 
     this.treeToHistory();
@@ -421,12 +422,12 @@ class BinarySearchTree {
     };
 
     if (node.right === null) {
-      legend.description = `Right child of the node ${node.data} is empty => the max node is ${node.data}`;
+      legend.description = `${this.translations.s15} ${node.data} ${this.translations.s16} ${node.data}`;
       this.algoritmLegend.push(legend);
 
       return node;
     } else {
-      legend.description = `Node ${node.data} have a right child => continue search in the right subtree`;
+      legend.description = `${this.translations.s17} ${node.data} ${this.translations.s18}`;
       this.algoritmLegend.push(legend);
 
       return this.findMaxNode(node.right);
