@@ -53,6 +53,8 @@ class AvlTreeContainer extends Component {
   nextStep = () => {
     const { step, history } = this.state;
 
+    // console.log('next history', history[step + 1]);
+
     if (step + 1 < history.length) {
       this.setState({
         step: step + 1,
@@ -63,6 +65,8 @@ class AvlTreeContainer extends Component {
 
   prevStep = () => {
     const { step, history } = this.state;
+
+    // console.log('prev history', history[step - 1]);
 
     if (step - 1 >= 0) {
       this.setState({
