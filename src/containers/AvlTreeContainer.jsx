@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { translate } from 'react-i18next';
 
 import AVLTree from '../libs/AvlTree';
 
@@ -26,7 +28,7 @@ class AvlTreeContainer extends Component {
           { id: 1 },
         ],
         edges: [],
-        legend: [{ node: -1, description: 'Tree is initialized.' }],
+        legend: [{ node: -1, description: this.props.t('legend.initialized') }],
       },
     ],
   }
@@ -354,6 +356,8 @@ class AvlTreeContainer extends Component {
       step,
     } = this.state;
 
+    const { t } = this.props;
+
     if (!isLoaded) {
       return null;
     }
@@ -361,7 +365,7 @@ class AvlTreeContainer extends Component {
     return (
       <section className={style.container}>
         <Helmet>
-          <title>AVL tree</title>
+          <title>{t('avl.title')}</title>
         </Helmet>
 
         <div className={style.content}>
@@ -387,4 +391,8 @@ class AvlTreeContainer extends Component {
   }
 }
 
-export default AvlTreeContainer;
+AvlTreeContainer.propTypes = {
+  t: PropTypes.func.isRequired,
+};
+
+export default translate()(AvlTreeContainer);

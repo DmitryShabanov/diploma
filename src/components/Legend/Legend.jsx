@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import style from './Legend.scss';
 
-const Legend = ({ legend }) => (
+const Legend = ({ legend, t }) => (
   <div className={style.container}>
     <p className={style.title}>
-      Legend
+      {t('legend.title')}
     </p>
     {legend.length > 0 ? (
         legend.map(item => (
@@ -32,6 +33,7 @@ Legend.propTypes = {
     node: PropTypes.number,
     description: PropTypes.string,
   })),
+  t: PropTypes.func.isRequired,
 };
 
-export default Legend;
+export default translate()(Legend);

@@ -3,6 +3,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
+import './utils/i18n';
+
 import './styles/reset.scss';
 
 const renderApp = () => {
