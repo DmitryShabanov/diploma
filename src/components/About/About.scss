@@ -17,10 +17,8 @@
 
   height: calc(100vh - 60px);
 
-  background-image: url('../../images/about_bg.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  // background: linear-gradient(to bottom right, #369 20%, #9cf 85%);
+  background: linear-gradient(to bottom right, rgba(238, 174, 202, 1) 10%, rgba(148, 187, 233, 1) 85%);
 
   align-items: center;
   justify-content: center;
@@ -37,7 +35,7 @@
 
     content: '';
 
-    opacity: 0.3;
+    opacity: 0.25;
     background-color: $dark-bg-color;
   }
 }
