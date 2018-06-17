@@ -63,7 +63,7 @@ class AVLTree {
     if (currentNode !== null) {
       snapshot.nodes.push({
         id: currentNode.data,
-        label: `Node ${currentNode.data}`,
+        label: String(currentNode.data),
       });
 
       if (prevNode !== null) {

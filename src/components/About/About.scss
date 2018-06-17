@@ -16,8 +16,8 @@
   display: flex;
 
   height: calc(100vh - 60px);
-
   // background: linear-gradient(to bottom right, #369 20%, #9cf 85%);
+
   background: linear-gradient(to bottom right, rgba(238, 174, 202, 1) 10%, rgba(148, 187, 233, 1) 85%);
 
   align-items: center;
@@ -110,3 +110,16 @@
     fill: $accent-color;
   }
 }
+
+.list {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 40px;
+
+  list-style-type: circle;
+}
+
+.indentation {
+  margin-top: 10px;
+}
+
