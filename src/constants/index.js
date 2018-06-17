@@ -12,6 +12,9 @@ export const graphOptions = {
       sortMethod: 'directed',
     },
   },
+  nodes: {
+    shape: 'circle',
+  },
   edges: {
     color: edgesColor,
   },

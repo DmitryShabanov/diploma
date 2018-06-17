@@ -31,12 +31,34 @@ const About = ({ t }) => (
     </div>
 
     <div id="about-content" className={style.content}>
-      <p className={style.contentText}>
+      <div className={style.contentText}>
         {t('about.p1')}
-      </p>
-      <p className={style.contentText}>
-        {t('about.p2')}
-      </p>
+      </div>
+      <div className={style.contentText}>
+        <p>{t('about.p2')}</p>
+        <ul className={style.list}>
+          <li>{t('about.p2l1')}</li>
+          <li>{t('about.p2l2')}</li>
+        </ul>
+      </div>
+      <div className={style.contentText}>
+        <p>{t('about.bt1')}</p>
+        <ul className={style.list}>
+          <li>{t('about.bt1l1')}</li>
+          <li>{t('about.bt1l2')}</li>
+          <li>{t('about.bt1l3')}</li>
+        </ul>
+        <p>{t('about.bt2')}</p>
+        <p className={style.indentation}>{t('about.bt3')}</p>
+        <ul className={style.list}>
+          <li>{t('about.bt3l1')}</li>
+          <li>{t('about.bt3l2')}</li>
+          <li>{t('about.bt3l3')}</li>
+        </ul>
+      </div>
+      <div className={style.contentText}>
+        {t('about.avl1')}
+      </div>
     </div>
   </section>
 );
