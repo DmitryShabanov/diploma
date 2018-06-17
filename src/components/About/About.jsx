@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { translate } from 'react-i18next';
 
 import style from './About.scss';
 
@@ -14,14 +16,14 @@ const scrollPage = () => {
   });
 };
 
-const About = () => (
+const About = ({ t }) => (
   <section className={style.container}>
     <Helmet>
-      <title>About</title>
+      <title>{t('header.about')}</title>
     </Helmet>
 
     <div className={style.title}>
-      <h1 className={style.titleText}>About us</h1>
+      <h1 className={style.titleText}>{t('about.title')}</h1>
       <ArrowIcon
         className={style.arrowIcon}
         onClick={scrollPage}
@@ -29,14 +31,40 @@ const About = () => (
     </div>
 
     <div id="about-content" className={style.content}>
-      <p className={style.contentText}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic veniam alias doloribus nulla enim dolores doloremque, repellendus, fuga fugiat voluptate, eaque possimus cum ipsa soluta obcaecati quasi aliquid. Dolores, dignissimos, libero. Necessitatibus hic, accusamus ipsa quia, aperiam consequatur explicabo id laborum eaque voluptates repudiandae. Officiis, repellendus, dicta distinctio maxime eaque iure, dolorem facere exercitationem voluptas commodi assumenda. Laboriosam ipsa repudiandae enim commodi? Sapiente a nihil optio delectus obcaecati dolores, nulla laboriosam aspernatur accusamus provident pariatur excepturi. Tenetur accusamus animi quisquam in, sequi incidunt reprehenderit perspiciatis repellat eveniet vero, amet magnam tempora deserunt totam dolorem, unde, eaque error! Quisquam possimus ea unde libero labore magni laudantium, a eius reiciendis. Recusandae soluta enim quibusdam fuga quia! Unde libero corporis veritatis molestias cupiditate corrupti commodi asperiores aperiam eveniet, id dolorum velit dolores deleniti fugiat incidunt, sequi expedita architecto. Temporibus doloribus ipsum necessitatibus repudiandae, quaerat aspernatur impedit eaque commodi explicabo. Consequuntur accusantium eum adipisci, eius illo.
-      </p>
-      <p className={style.contentText}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic veniam alias doloribus nulla enim dolores doloremque, repellendus, fuga fugiat voluptate, eaque possimus cum ipsa soluta obcaecati quasi aliquid. Dolores, dignissimos, libero. Necessitatibus hic, accusamus ipsa quia, aperiam consequatur explicabo id laborum eaque voluptates repudiandae. Officiis, repellendus, dicta distinctio maxime eaque iure, dolorem facere exercitationem voluptas commodi assumenda. Laboriosam ipsa repudiandae enim commodi? Sapiente a nihil optio delectus obcaecati dolores, nulla laboriosam aspernatur accusamus provident pariatur excepturi. Tenetur accusamus animi quisquam in, sequi incidunt reprehenderit perspiciatis repellat eveniet vero, amet magnam tempora deserunt totam dolorem, unde, eaque error! Quisquam possimus ea unde libero labore magni laudantium, a eius reiciendis. Recusandae soluta enim quibusdam fuga quia! Unde libero corporis veritatis molestias cupiditate corrupti commodi asperiores aperiam eveniet, id dolorum velit dolores deleniti fugiat incidunt, sequi expedita architecto. Temporibus doloribus ipsum necessitatibus repudiandae, quaerat aspernatur impedit eaque commodi explicabo. Consequuntur accusantium eum adipisci, eius illo.
-      </p>
+      <div className={style.contentText}>
+        {t('about.p1')}
+      </div>
+      <div className={style.contentText}>
+        <p>{t('about.p2')}</p>
+        <ul className={style.list}>
+          <li>{t('about.p2l1')}</li>
+          <li>{t('about.p2l2')}</li>
+        </ul>
+      </div>
+      <div className={style.contentText}>
+        <p>{t('about.bt1')}</p>
+        <ul className={style.list}>
+          <li>{t('about.bt1l1')}</li>
+          <li>{t('about.bt1l2')}</li>
+          <li>{t('about.bt1l3')}</li>
+        </ul>
+        <p>{t('about.bt2')}</p>
+        <p className={style.indentation}>{t('about.bt3')}</p>
+        <ul className={style.list}>
+          <li>{t('about.bt3l1')}</li>
+          <li>{t('about.bt3l2')}</li>
+          <li>{t('about.bt3l3')}</li>
+        </ul>
+      </div>
+      <div className={style.contentText}>
+        {t('about.avl1')}
+      </div>
     </div>
   </section>
 );
 
-export default About;
+About.propTypes = {
+  t: PropTypes.func.isRequired,
+};
+
+export default translate()(About);

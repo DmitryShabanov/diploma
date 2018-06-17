@@ -72,8 +72,32 @@
   }
 }
 
+.options {
+  display: flex;
+}
+
+.flagWrapper {
+  display: flex;
+
+  margin: 0 2px;
+
+  border-radius: 50%;
+
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.flagIcon {
+  width: 20px;
+  height: 20px;
+}
+
 .git {
-  margin: 0 20px;
+  margin-right: 20px;
+  margin-left: 10px;
 
   border-radius: 50%;
 }
